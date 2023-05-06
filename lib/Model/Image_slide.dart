@@ -46,7 +46,7 @@ class _Image_slideState extends State<Image_slide> {
   }
 
   Widget creatWidget(Image_Slide imageSlide) => CarouselSlider.builder(
-        itemCount: 2,
+        itemCount: 1,
         itemBuilder: (context, index, realIndex) {
           return Image.network(
             imageSlide.image,
@@ -77,6 +77,7 @@ class _Image_slideState extends State<Image_slide> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.transparent,
       body: widgests.isEmpty
           ? const Center(
               child: CircularProgressIndicator(),
