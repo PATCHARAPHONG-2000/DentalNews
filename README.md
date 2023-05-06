@@ -1,7 +1,7 @@
 # Flutter Dental News 🔥🔥
 <hr>
 <h4> Gif Image : </h4>
- <img src="https://github.com/PATCHARAPHONG-2000/DentalNews/blob/main/AnyConv.com__ds.gif" />
+ <img src="https://github.com/PATCHARAPHONG-2000/DentalNews/blob/main/GIF.gif" alt="Css Logo" with="1000" height="600" />
 
 <img src="https://github.com/PATCHARAPHONG-2000/DentalNews/blob/main/P1.png" />
 
