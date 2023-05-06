@@ -195,6 +195,7 @@ class _KnowledgeState extends State<Knowledge> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.transparent,
       body: knowledgeWidgets.isEmpty
           ? Center(
               child: CircularProgressIndicator(
