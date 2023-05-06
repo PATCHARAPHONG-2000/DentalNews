@@ -39,7 +39,7 @@
  
  
   <a target="_blank" rel="" href="https://github.com/PATCHARAPHONG-2000/Dental-News/blob/master/Screenshot_1.png">
-        <img src="https://github.com/PATCHARAPHONG-2000/Dental-News/blob/master/Screenshot_1.png" alt="Css Logo" with="200" height="400"/>
+        <img src="https://github.com/PATCHARAPHONG-2000/Dental-News/blob/master/Screenshot_1.png" alt="Css Logo" with="200" height="300"/>
 
   </a></td>
  
@@ -49,7 +49,7 @@
  
  
   <a target="_blank" rel="" href="https://github.com/PATCHARAPHONG-2000/Dental-News/blob/master/Screenshot_2.png">
-      <img src="https://github.com/PATCHARAPHONG-2000/Dental-News/blob/master/Screenshot_2.png" alt="Css Logo" with="200" height="400"/>
+      <img src="https://github.com/PATCHARAPHONG-2000/Dental-News/blob/master/Screenshot_2.png" alt="Css Logo" with="200" height="300"/>
 
   </a></td>
   
@@ -61,7 +61,7 @@
    
    
   <a target="_blank" rel="" href="https://github.com/PATCHARAPHONG-2000/Dental-News/blob/master/Screenshot_3.png">
-      <img src="https://github.com/PATCHARAPHONG-2000/Dental-News/blob/master/Screenshot_3.png" alt="Css Logo" with="200" height="400"/>
+      <img src="https://github.com/PATCHARAPHONG-2000/Dental-News/blob/master/Screenshot_3.png" alt="Css Logo" with="200" height="300"/>
 
    
    
@@ -73,7 +73,7 @@
    
    
   <a target="_blank" rel="" href="https://github.com/PATCHARAPHONG-2000/Dental-News/blob/master/Screenshot_4.png">
-      <img src="https://github.com/PATCHARAPHONG-2000/Dental-News/blob/master/Screenshot_4.png" alt="Css Logo" with="200" height="400"/>
+      <img src="https://github.com/PATCHARAPHONG-2000/Dental-News/blob/master/Screenshot_4.png" alt="Css Logo" with="200" height="300"/>
 
   </a></td>
   
@@ -82,7 +82,7 @@
    
    
   <a target="_blank" rel="" href="https://github.com/PATCHARAPHONG-2000/Dental-News/blob/master/Screenshot_5.png">
-      <img src="https://github.com/PATCHARAPHONG-2000/Dental-News/blob/master/Screenshot_5.png" alt="Css Logo" with="200" height="400"/>
+      <img src="https://github.com/PATCHARAPHONG-2000/Dental-News/blob/master/Screenshot_5.png" alt="Css Logo" with="200" height="300"/>
 
   </a></td>
  
