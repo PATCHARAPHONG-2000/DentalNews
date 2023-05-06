@@ -2,7 +2,7 @@
 <hr>
 <h4> DEN : </h4>
 
-<img src="https://github.com/PATCHARAPHONG-2000/DentalNews/blob/main/P1.png" alt="Css Logo" with="1440" height="700"/>
+<img src="https://github.com/PATCHARAPHONG-2000/DentalNews/blob/main/P1.png" alt="Css Logo" with="1440" height="500"/>
 
 
 <h4> Gif Image : </h4>
