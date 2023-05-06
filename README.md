@@ -1,6 +1,6 @@
 # Flutter Dental News 🔥🔥
 <hr>
-<h4> DEN : </h4>
+<h4> DENTAL NEWS : </h4>
 
 <img src="https://github.com/PATCHARAPHONG-2000/DentalNews/blob/main/P1.png" alt="Css Logo" with="1440" height="500"/>
 
