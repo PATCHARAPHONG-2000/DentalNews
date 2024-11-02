@@ -1,0 +1,68 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:provider/provider.dart';
+
+import 'Main_Bottom.dart';
+import 'ThemeMode/AppTheme.dart';
+import 'ThemeMode/ThemeProvider.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: const FirebaseOptions(
+      apiKey: "AIzaSyBzj617iVSZl_Fuc_bHwccmcpAB1WZkU3A",
+      projectId: "dentalnews-657c1",
+      messagingSenderId: '746041165202',
+      storageBucket: 'dentalnews-657c1.appspot.com',
+      appId: "1:746041165202:android:0abf953d7f1342337e6d4b",
+    ),
+  );
+
+  await FlutterDownloader.initialize(
+    debug: true,
+  );
+
+  await EasyLocalization.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+
+  String initialLanguage =
+      prefs.getString('language') ?? 'th'; // Default to 'th'
+  bool isDarkTheme = prefs.getBool('isDarkTheme') ?? false;
+  Locale initialLocale = Locale(initialLanguage);
+
+  runApp(
+    EasyLocalization(
+      supportedLocales: const [Locale('th'), Locale('en')],
+      path: 'assets/translations',
+      saveLocale: true,
+      fallbackLocale: const Locale('th', 'TH'),
+      startLocale: initialLocale,
+      child: ChangeNotifierProvider(
+        create: (_) => ThemeProvider()..setDarkTheme(isDarkTheme),
+        child: const DentalNewsApp(),
+      ),
+    ),
+  );
+}
+
+class DentalNewsApp extends StatelessWidget {
+  const DentalNewsApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
+      theme: Provider.of<ThemeProvider>(context).isDarkTheme
+          ? themeDataDark
+          : themeDataLight,
+      debugShowCheckedModeBanner: false,
+      home: const Home(),
+    );
+  }
+}

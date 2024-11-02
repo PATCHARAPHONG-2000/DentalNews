@@ -1,0 +1,11 @@
+E:\Flutter_Mobile\DentalNews\android\app\key
+E:\Project_DentalNews\Dental News
+
+keytool -genkey -v -keystore E:\Flutter_Mobile\DentalNews\android\app\key/key.jks ^
+        -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 ^
+        -alias upload
+
+F:\ssru_dental_news\android\app\key
+keytool -genkey -v -keystore E:\Project_DentalNews\Dental News\android\app\key\key.jks -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias upload
+keytool -genkey -v -keystore E:\Project_DentalNews\Dental News\android\app\key\key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias key
+keytool -genkey -v -keystore E:\Project_DentalNews\Dental News\android\app\key\key.jks -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias upload
