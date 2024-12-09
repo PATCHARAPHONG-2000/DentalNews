@@ -103,7 +103,7 @@ class _ProfileFormState extends State<ProfileForm> {
 
   @override
   Widget build(BuildContext context) {
-    // ใช้ MediaQuery เพื่อให้ responsive ตามขนาดหน้าจอ
+    context.locale; // ให้ EasyLocalization ติดตามการเปลี่ยนแปลงภาษา
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 

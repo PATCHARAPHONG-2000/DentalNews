@@ -24,6 +24,7 @@ class _Home_ToothacheState extends State<Home_Toothache> {
   void initState() {
     super.initState();
     loadViewedItems(); // Load viewed items from shared preferences
+    fetchData(); // Fetch data from Firebase
   }
 
   // Load viewed items from shared preferences
@@ -32,15 +33,15 @@ class _Home_ToothacheState extends State<Home_Toothache> {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       setState(() {
         viewedItems = prefs.getKeys().fold<Map<String, bool>>({}, (map, key) {
-          map[key] = prefs.getBool(key) ?? false;
+          final value = prefs.get(key);
+          if (value is bool) {
+            map[key] = value;
+          }
           return map;
         });
       });
     } catch (e) {
-      // จัดการกรณีที่เกิดข้อผิดพลาดในการดึงข้อมูลจาก SharedPreferences
       print("Error loading viewed items: $e");
-    } finally {
-      fetchData(); // Fetch data หลังจากโหลดข้อมูลการดูแล้ว
     }
   }
 

@@ -30,13 +30,20 @@ class _Press_releaseState extends State<Press_release> {
 
   // Load viewed items from SharedPreferences
   Future<void> loadViewedItems() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      viewedItems = prefs.getKeys().fold<Map<String, bool>>({}, (map, key) {
-        map[key] = prefs.getBool(key) ?? false;
-        return map;
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      setState(() {
+        viewedItems = prefs.getKeys().fold<Map<String, bool>>({}, (map, key) {
+          final value = prefs.get(key);
+          if (value is bool) {
+            map[key] = value;
+          }
+          return map;
+        });
       });
-    });
+    } catch (e) {
+      print("Error loading viewed items: $e");
+    }
   }
 
   // Mark item as viewed and save in SharedPreferences

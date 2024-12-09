@@ -3,7 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icons.dart';
 
-import '../Data/List_Title.dart'; // ไฟล์ที่เก็บข้อมูล Receipte
+import '../Data/List_Title.dart'; // นำเข้าไฟล์ใหม่ที่เก็บ getReceipteList()
 import '../utils/utils.dart'; // ฟังก์ชันอื่นๆ ที่เกี่ยวข้อง
 
 class Customer_Rights extends StatefulWidget {
@@ -16,11 +16,10 @@ class Customer_Rights extends StatefulWidget {
 class _Customer_RightsState extends State<Customer_Rights> {
   @override
   Widget build(BuildContext context) {
-    // คำนวณขนาดตัวอักษรและระยะห่างตามขนาดของหน้าจอ
-    double baseFontSize =
-        MediaQuery.of(context).size.width * 0.045; // ขนาดฟอนต์ฐาน
-    double basePadding =
-        MediaQuery.of(context).size.height * 0.02; // ระยะห่างฐาน
+    double baseFontSize = MediaQuery.of(context).size.width * 0.045;
+    double basePadding = MediaQuery.of(context).size.height * 0.02;
+
+    List<Receipte> receipte = getReceipteList(); // เรียกใช้ getReceipteList()
 
     return Scaffold(
       appBar: AppBar(
@@ -33,7 +32,7 @@ class _Customer_RightsState extends State<Customer_Rights> {
           tr('DPR.Dental_patient_rights'),
           style: GoogleFonts.k2d(
             textStyle: TextStyle(
-              fontSize: baseFontSize + 5, // ปรับขนาดฟอนต์ตามหน้าจอ
+              fontSize: baseFontSize + 5,
               fontWeight: FontWeight.w600,
               color: Colors.white,
             ),
@@ -47,16 +46,14 @@ class _Customer_RightsState extends State<Customer_Rights> {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.all(basePadding), // ปรับ Padding ตามขนาดหน้าจอ
+        padding: EdgeInsets.all(basePadding),
         child: ListView.builder(
           itemCount: receipte.length,
           itemBuilder: (context, index) {
             return Padding(
-              padding:
-                  EdgeInsets.only(bottom: basePadding), // ระยะห่างระหว่างรายการ
+              padding: EdgeInsets.only(bottom: basePadding),
               child: Container(
-                padding: EdgeInsets.all(
-                    basePadding), // ระยะห่างภายในกล่องแต่ละรายการ
+                padding: EdgeInsets.all(basePadding),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(color: Colors.grey.withOpacity(0.5)),
@@ -72,39 +69,35 @@ class _Customer_RightsState extends State<Customer_Rights> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // ชื่อรายการ
                     Text(
                       receipte[index].name,
                       overflow: TextOverflow.ellipsis,
+                      softWrap: true,
                       style: GoogleFonts.k2d(
                         textStyle: TextStyle(
-                          fontSize: baseFontSize + 3, // ปรับขนาดฟอนต์ตามหน้าจอ
+                          fontSize: baseFontSize + 3,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),
-                    SizedBox(height: basePadding / 2), // ระยะห่างหลังชื่อรายการ
-
-                    // เส้นแบ่ง
-                    Divider(
+                    SizedBox(height: basePadding / 2),
+                    const Divider(
                       thickness: 1.5,
-                      color: color.grey,
+                      color: Colors.grey,
                     ),
-                    SizedBox(height: basePadding / 2), // ระยะห่างหลังเส้นแบ่ง
-
-                    // เนื้อหาของรายการจาก receipte[index].lebbel
+                    SizedBox(height: basePadding / 2),
                     Text(
                       receipte[index].lebbel,
-                      textAlign: TextAlign.start, // จัดให้ข้อความเต็มบรรทัด
+                      textAlign: TextAlign.start,
                       style: GoogleFonts.k2d(
                         textStyle: TextStyle(
-                          fontSize: baseFontSize, // ขนาดฟอนต์ตามหน้าจอ
+                          fontSize: baseFontSize,
                           fontWeight: FontWeight.w300,
-                          height: 1.5, // เพิ่มระยะห่างระหว่างบรรทัด
+                          height: 1.5,
                         ),
                       ),
                     ),
-                    SizedBox(height: basePadding), // ระยะห่างหลังข้อความ
+                    SizedBox(height: basePadding),
                   ],
                 ),
               ),

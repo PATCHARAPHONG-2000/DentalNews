@@ -1,10 +1,9 @@
-// ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icons.dart';
 
-import '../Data/List_Title.dart';
+import '../Data/List_Title.dart'; // นำเข้าไฟล์ใหม่ที่เก็บ getVolunteereList()
 import '../utils/utils.dart';
 
 class Dental_Benefitsr extends StatefulWidget {
@@ -17,13 +16,15 @@ class Dental_Benefitsr extends StatefulWidget {
 class _Dental_BenefitsrState extends State<Dental_Benefitsr> {
   @override
   Widget build(BuildContext context) {
-    // คำนวณขนาดหน้าจอเพื่อทำให้ UI responsive
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
     // ขนาดฟอนต์และระยะห่างพื้นฐาน
     double baseFontSize = screenWidth * 0.045;
     double basePadding = screenHeight * 0.02;
+
+    // ดึงข้อมูล volunteer list
+    List<Volunteere> volunteere = getVolunteereList();
 
     return Scaffold(
       appBar: AppBar(
@@ -36,7 +37,7 @@ class _Dental_BenefitsrState extends State<Dental_Benefitsr> {
           tr('DB.Dental_Benefits'),
           style: GoogleFonts.k2d(
             textStyle: TextStyle(
-              fontSize: baseFontSize + 5, // ปรับขนาดฟอนต์ตามหน้าจอ
+              fontSize: baseFontSize + 5,
               fontWeight: FontWeight.w600,
               color: Colors.white,
             ),
@@ -50,7 +51,7 @@ class _Dental_BenefitsrState extends State<Dental_Benefitsr> {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.all(basePadding), // ปรับ padding ให้ responsive
+        padding: EdgeInsets.all(basePadding),
         child: ListView.builder(
           itemCount: volunteere.length,
           itemBuilder: (context, index) {
@@ -73,39 +74,34 @@ class _Dental_BenefitsrState extends State<Dental_Benefitsr> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // ชื่อหัวข้อแต่ละรายการ
                     Text(
                       volunteere[index].name,
-                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.start,
                       style: GoogleFonts.k2d(
                         textStyle: TextStyle(
-                          fontSize: baseFontSize + 2, // ขนาดฟอนต์
+                          fontSize: baseFontSize + 2,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),
                     SizedBox(height: basePadding / 2),
-
-                    // เส้นแบ่ง
-                    Divider(
+                    const Divider(
                       thickness: 1.5,
-                      color: color.grey,
+                      color: Colors.grey,
                     ),
                     SizedBox(height: basePadding / 2),
-
-                    // เนื้อหาแต่ละรายการ
                     Text(
                       volunteere[index].lebbel,
-                      textAlign: TextAlign.justify,
+                      textAlign: TextAlign.start,
                       style: GoogleFonts.k2d(
                         textStyle: TextStyle(
-                          fontSize: baseFontSize, // ขนาดฟอนต์
+                          fontSize: baseFontSize,
                           fontWeight: FontWeight.w300,
-                          height: 1.5, // เพิ่มระยะห่างระหว่างบรรทัด
+                          height: 1.5,
                         ),
                       ),
                     ),
-                    SizedBox(height: basePadding), // เพิ่มระยะห่างด้านล่าง
+                    SizedBox(height: basePadding),
                   ],
                 ),
               ),

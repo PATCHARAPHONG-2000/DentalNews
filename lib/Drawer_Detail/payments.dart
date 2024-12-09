@@ -1,9 +1,9 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icons.dart';
 
-import '../Data/List_Title.dart';
+import '../Data/List_Title.dart'; // นำเข้าไฟล์ใหม่ที่เก็บ getPaymentseList()
 import '../utils/utils.dart';
 
 class Payments extends StatefulWidget {
@@ -16,9 +16,10 @@ class Payments extends StatefulWidget {
 class _PaymentsState extends State<Payments> {
   @override
   Widget build(BuildContext context) {
-    // Getting the screen size for responsive design
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
+
+    List<Paymentse> paymentse = getPaymentseList(); // เรียกใช้ getPaymentseList()
 
     return Scaffold(
       appBar: AppBar(
@@ -38,7 +39,7 @@ class _PaymentsState extends State<Payments> {
           ),
         ),
         leading: IconButton(
-          icon: Icon(LineIcons.chevronCircleLeft),
+          icon: const Icon(LineIcons.chevronCircleLeft),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -82,9 +83,9 @@ class _PaymentsState extends State<Payments> {
                     SizedBox(
                       height: screenHeight * 0.02,
                     ),
-                    Divider(
+                    const Divider(
                       thickness: 1.5,
-                      color: color.grey,
+                      color: Colors.grey,
                     ),
                     SizedBox(
                       height: screenHeight * 0.02,

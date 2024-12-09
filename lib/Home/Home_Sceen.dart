@@ -200,7 +200,7 @@ class _HomeSceenState extends State<HomeSceen> {
           Padding(
             padding: const EdgeInsets.only(right: 10),
             child: IconButton(
-              icon: Icon(
+              icon: const Icon(
                 LineIcons.facebookMessenger,
                 size: 35,
               ),

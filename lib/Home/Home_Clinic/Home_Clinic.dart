@@ -104,7 +104,7 @@ class _Home_ClinicState extends State<Home_Clinic> {
           child: Container(
             width: MediaQuery.of(context).size.width,
             height:
-                MediaQuery.of(context).size.height * 0.2, // ปรับขนาดให้สูงขึ้น
+                MediaQuery.of(context).size.height * 0.20, // ปรับขนาดให้สูงขึ้น
             decoration: BoxDecoration(
               color: Colors.grey[400],
               borderRadius: BorderRadius.circular(20),
@@ -114,7 +114,7 @@ class _Home_ClinicState extends State<Home_Clinic> {
               ),
             ),
             child: Padding(
-              padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.03),
+              padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

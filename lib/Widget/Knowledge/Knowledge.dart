@@ -30,13 +30,20 @@ class _NewKnowledgeState extends State<NewKnowledge> {
   }
 
   Future<void> loadViewedItems() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      viewedItems = prefs.getKeys().fold<Map<String, bool>>({}, (map, key) {
-        map[key] = prefs.getBool(key) ?? false;
-        return map;
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      setState(() {
+        viewedItems = prefs.getKeys().fold<Map<String, bool>>({}, (map, key) {
+          map[key] = prefs.getBool(key) ?? false;
+          return map;
+        });
       });
-    });
+    } catch (e) {
+      // จัดการกรณีที่เกิดข้อผิดพลาดในการดึงข้อมูลจาก SharedPreferences
+      print("Error loading viewed items: $e");
+    } finally {
+      fetchData(); // Fetch data หลังจากโหลดข้อมูลการดูแล้ว
+    }
   }
 
   Future<void> markAsViewed(String id) async {
@@ -227,8 +234,8 @@ class _NewKnowledgeState extends State<NewKnowledge> {
         title: Text(
           tr('app.knowledge'),
           style: GoogleFonts.k2d(
-            textStyle: const TextStyle(
-              fontSize: 25,
+            textStyle: TextStyle(
+              fontSize: MediaQuery.of(context).size.width * 0.05,
               fontWeight: FontWeight.w600,
               color: Colors.white,
             ),

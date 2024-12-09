@@ -22,25 +22,24 @@ void main() async {
     ),
   );
 
-  await FlutterDownloader.initialize(
-    debug: true,
-  );
+  await FlutterDownloader.initialize(debug: true);
 
   await EasyLocalization.ensureInitialized();
-  SharedPreferences prefs = await SharedPreferences.getInstance();
+  final prefs = await SharedPreferences.getInstance();
 
-  String initialLanguage =
-      prefs.getString('language') ?? 'th'; // Default to 'th'
+  // ตั้งค่าเริ่มต้นเป็นภาษาไทย
+  bool languageSwitchValue = prefs.getBool('languageSwitchValue') ?? false;
+  Locale initialLocale =
+      languageSwitchValue ? const Locale('en') : const Locale('th');
   bool isDarkTheme = prefs.getBool('isDarkTheme') ?? false;
-  Locale initialLocale = Locale(initialLanguage);
 
   runApp(
     EasyLocalization(
       supportedLocales: const [Locale('th'), Locale('en')],
       path: 'assets/translations',
       saveLocale: true,
-      fallbackLocale: const Locale('th', 'TH'),
-      startLocale: initialLocale,
+      fallbackLocale: const Locale('th'), // ตั้งภาษาไทยเป็น fallback
+      startLocale: initialLocale, // ตั้งค่า initialLocale
       child: ChangeNotifierProvider(
         create: (_) => ThemeProvider()..setDarkTheme(isDarkTheme),
         child: const DentalNewsApp(),

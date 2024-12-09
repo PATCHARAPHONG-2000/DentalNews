@@ -42,7 +42,7 @@ class _PolicyState extends State<Policy> {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: basePadding),
+        padding: EdgeInsets.symmetric(horizontal: basePadding / 2.0),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

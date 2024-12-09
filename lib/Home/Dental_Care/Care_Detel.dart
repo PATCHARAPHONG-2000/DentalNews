@@ -117,7 +117,7 @@ class _Care_DetelState extends State<Care_Detel> {
                     ),
                     children: [
                       TextSpan(
-                        text: '1 กุมภาพันธ์ 2023', // ข้อความส่วนที่เหลือ
+                        text: care_data!.time, // ข้อความส่วนที่เหลือ
                         style: GoogleFonts.k2d(
                           textStyle: const TextStyle(
                             fontSize: 20,
