@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icons.dart';
 
 import '../Data/List_Title.dart'; // นำเข้าไฟล์ใหม่ที่เก็บ getPaymentseList()
-import '../utils/utils.dart';
 
 class Payments extends StatefulWidget {
   const Payments({Key? key}) : super(key: key);

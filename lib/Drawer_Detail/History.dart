@@ -20,6 +20,8 @@ class _HistoryState extends State<History> {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
+    List<Paymentse> historye = getPaymentseList(); 
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).dividerColor,

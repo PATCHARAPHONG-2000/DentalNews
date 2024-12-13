@@ -33,11 +33,11 @@ class _ProfileFormState extends State<ProfileForm> {
   Future<void> openPDF(BuildContext context) async {
     try {
       // โหลดไฟล์จาก assets
-      final byteData = await rootBundle.load('assets/pdf/usermanual.pdf');
+      final byteData = await rootBundle.load('assets/pdf/Application.pdf');
 
       // สร้างไฟล์ชั่วคราวใน directory ของแอป
       final tempDir = await getTemporaryDirectory();
-      final tempFile = File('${tempDir.path}/usermanual.pdf');
+      final tempFile = File('${tempDir.path}/Application.pdf');
 
       // เขียนไฟล์ PDF ลงในระบบไฟล์
       await tempFile.writeAsBytes(byteData.buffer.asUint8List());
@@ -120,7 +120,7 @@ class _ProfileFormState extends State<ProfileForm> {
                 CircleAvatar(
                   backgroundColor: Colors.transparent,
                   maxRadius: screenWidth * 0.2, // ปรับขนาดตาม screen width
-                  backgroundImage: const AssetImage('image/LGH.png'),
+                  backgroundImage: const AssetImage('image/head_support.png'),
                 ),
                 Padding(
                   padding: EdgeInsets.all(screenHeight * 0.02), // ปรับ padding

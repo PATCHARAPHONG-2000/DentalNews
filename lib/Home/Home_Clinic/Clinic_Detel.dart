@@ -16,7 +16,6 @@ class Clinic_Detel extends StatelessWidget {
         throw Exception('Could not launch $uri');
       }
     } catch (e) {
-      // Handle the error, show dialog or snackbar if needed
       debugPrint('Error: $e');
     }
   }
@@ -36,9 +35,9 @@ class Clinic_Detel extends StatelessWidget {
         const SizedBox(height: 10),
         Text(
           content,
-          maxLines: 3, // Unlimited lines
-          overflow: TextOverflow.visible, // Allow text to wrap
-          softWrap: true, // Enable text wrapping
+          maxLines: 3,
+          overflow: TextOverflow.visible,
+          softWrap: true,
           style: GoogleFonts.k2d(
             fontSize: fontSizeContent,
             fontWeight: FontWeight.w300,
@@ -48,9 +47,46 @@ class Clinic_Detel extends StatelessWidget {
     );
   }
 
+  Widget _buildWorkingDaysSection(double fontSizeTitle, double fontSizeContent) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          tr('app.Time'), // หัวข้อเวลา
+          style: GoogleFonts.k2d(
+            fontSize: fontSizeTitle,
+            fontWeight: FontWeight.w900,
+          ),
+        ),
+        const SizedBox(height: 10),
+        // วนลูปแสดงวันและเวลา
+        Padding(
+          padding: const EdgeInsets.only(left: 20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: clinicData.workingDays.map((dayData) {
+              final day = dayData['day'] ?? '';
+              final openTime = dayData['openTime'] ?? '';
+              final closeTime = dayData['closeTime'] ?? '';
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: Text(
+                  '$day: $openTime - $closeTime',
+                  style: GoogleFonts.k2d(
+                    fontSize: fontSizeContent,
+                    fontWeight: FontWeight.w300,
+                  ),
+                ),
+              );
+            }).toList(),
+          ),
+        )
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
@@ -74,7 +110,7 @@ class Clinic_Detel extends StatelessWidget {
             padding: const EdgeInsets.only(right: 10),
             child: IconButton(
               icon: Icon(LineIcons.directions,
-                  color: Colors.white, size: screenWidth * 0.05),
+                  color: Colors.white, size: screenWidth * 0.07),
               onPressed: () => _launchUrl(Uri.parse(clinicData.map)),
             ),
           ),
@@ -86,9 +122,7 @@ class Clinic_Detel extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: Image.asset(
-                "image/Head.png",
-              ),
+              child: Image.asset("image/Head.png"),
             ),
             const SizedBox(height: 40),
             Text(
@@ -106,19 +140,8 @@ class Clinic_Detel extends StatelessWidget {
               screenWidth * 0.045,
             ),
             const SizedBox(height: 20),
-            _buildTextSection(
-              tr('app.Time'),
-              clinicData.time,
-              screenWidth * 0.05,
-              screenWidth * 0.045,
-            ),
-            const SizedBox(height: 20),
-            _buildTextSection(
-              tr('app.Time_Out'),
-              clinicData.holidays,
-              screenWidth * 0.05,
-              screenWidth * 0.045,
-            ),
+            // เรียกฟังก์ชันแสดงวันและเวลาทำการ
+            _buildWorkingDaysSection(screenWidth * 0.05, screenWidth * 0.045),
           ],
         ),
       ),

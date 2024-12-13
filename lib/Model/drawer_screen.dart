@@ -35,7 +35,7 @@ class _DrawerPangState extends State<DrawerPang> {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.contain,
-                    image: AssetImage("image/LGH.png"),
+                    image: AssetImage("image/head_support.png"),
                   ),
                 ),
                 child: null,

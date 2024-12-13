@@ -1,5 +1,4 @@
 import 'package:dentalnews/Model/drawer_screen.dart';
-import 'package:dentalnews/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -87,6 +86,36 @@ class _Home_ClinicState extends State<Home_Clinic> {
     });
   }
 
+  String _formatWorkingDays(List<Map<String, dynamic>> workingDays) {
+    // รายชื่อวันในภาษาไทย
+    const daysInThai = [
+      "วันจันทร์",
+      "วันอังคาร",
+      "วันพุธ",
+      "วันพฤหัสบดี",
+      "วันศุกร์",
+      "วันเสาร์",
+      "วันอาทิตย์"
+    ];
+
+    // ดึงชื่อวันจาก workingDays
+    final openedDays = workingDays.map((dayMap) => dayMap['day']).toList();
+
+    // ตรวจสอบว่าครอบคลุมทุกวันหรือไม่
+    if (openedDays.length == 7 ||
+        ListEquality().equals(openedDays, daysInThai)) {
+      return "เปิดทุกวัน";
+    }
+
+    // หากวันเริ่มต้นที่จันทร์และจบที่อาทิตย์
+    if (openedDays.contains("วันจันทร์") && openedDays.contains("วันอาทิตย์")) {
+      return "วันจันทร์ ถึง วันอาทิตย์";
+    }
+
+    // แสดงรายการวันทำการแบบปกติ
+    return openedDays.join(", ");
+  }
+
   Widget createWidget(ClinicFirebase clinic) => Padding(
         padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
         child: GestureDetector(
@@ -103,8 +132,6 @@ class _Home_ClinicState extends State<Home_Clinic> {
           },
           child: Container(
             width: MediaQuery.of(context).size.width,
-            height:
-                MediaQuery.of(context).size.height * 0.20, // ปรับขนาดให้สูงขึ้น
             decoration: BoxDecoration(
               color: Colors.grey[400],
               borderRadius: BorderRadius.circular(20),
@@ -123,30 +150,18 @@ class _Home_ClinicState extends State<Home_Clinic> {
                     style: GoogleFonts.k2d(
                       textStyle: TextStyle(
                           overflow: TextOverflow.ellipsis,
-                          fontSize: MediaQuery.of(context).size.width *
-                              0.06, // ปรับขนาดฟอนต์
+                          fontSize: MediaQuery.of(context).size.width * 0.06,
                           fontWeight: FontWeight.w800,
                           color: Theme.of(context).splashColor),
                     ),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        tr('app.Time'),
-                        style: GoogleFonts.k2d(
-                          textStyle: TextStyle(
-                              fontSize: MediaQuery.of(context).size.width *
-                                  0.04, // ปรับขนาดฟอนต์
-                              fontWeight: FontWeight.w800,
-                              color: Theme.of(context).splashColor),
-                        ),
-                      ),
-                      SizedBox(width: MediaQuery.of(context).size.width * 0.02),
-                      Expanded(
-                        child: Text(
-                          clinic.time,
+                  if (clinic.workingDays.isNotEmpty)
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'วันเปิดทำการ: ',
                           style: GoogleFonts.k2d(
                             textStyle: TextStyle(
                                 fontSize:
@@ -154,45 +169,25 @@ class _Home_ClinicState extends State<Home_Clinic> {
                                 fontWeight: FontWeight.w800,
                                 color: Theme.of(context).splashColor),
                           ),
-                          maxLines: 2, // จำกัดให้แสดงผลไม่เกิน 2 บรรทัด
-                          overflow:
-                              TextOverflow.ellipsis, // ข้อมูลที่ยาวเกินจะถูกตัด
                         ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        tr('app.Time_Out'),
-                        style: GoogleFonts.k2d(
-                          textStyle: TextStyle(
-                              fontSize:
-                                  MediaQuery.of(context).size.width * 0.04,
-                              fontWeight: FontWeight.w800,
-                              color: Theme.of(context).splashColor),
-                        ),
-                      ),
-                      SizedBox(width: MediaQuery.of(context).size.width * 0.02),
-                      Expanded(
-                        child: Text(
-                          clinic.holidays,
-                          style: GoogleFonts.k2d(
-                            textStyle: TextStyle(
-                                fontSize:
-                                    MediaQuery.of(context).size.width * 0.04,
-                                fontWeight: FontWeight.w800,
-                                color: Theme.of(context).splashColor),
+                        SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.02),
+                        Expanded(
+                          child: Text(
+                            _formatWorkingDays(clinic.workingDays),
+                            style: GoogleFonts.k2d(
+                              textStyle: TextStyle(
+                                  fontSize:
+                                      MediaQuery.of(context).size.width * 0.04,
+                                  fontWeight: FontWeight.w800,
+                                  color: Theme.of(context).splashColor),
+                            ),
+                            maxLines: 4,
+                            overflow: TextOverflow.ellipsis,
                           ),
-                          maxLines: 2, // จำกัดให้แสดงผลไม่เกิน 2 บรรทัด
-                          overflow:
-                              TextOverflow.ellipsis, // ข้อมูลที่ยาวเกินจะถูกตัด
                         ),
-                      ),
-                    ],
-                  ),
+                      ],
+                    ),
                 ],
               ),
             ),

@@ -8,7 +8,7 @@
     "Dental_Council": "องค์กรทันตแพทยสภา",
     "Public_Relations": "ประชาสัมพันธ์",
     "Press_release": "ข่าวประชาสัมพันธ์",
-    "knowledge_news": "ความรู้ใหม่",
+    "knowledge_news": "ข่าวสารความรู้",
     "knowledge": "ความรู้",
     "knowledge_link": "ลิ้งค์ความรู้",
     "General": "ทั่วไป",
@@ -30,7 +30,7 @@
     "ManualTitle": "คู่มือการใช้งาน",
     "call": "ติดต่อ",
     "chat": "แชทบอท"
-  },
+},
 
   "DB": {
     "Dental_Benefits": "สิทธิประโยชน์ทางทันตกรรม",
