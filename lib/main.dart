@@ -1,6 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:provider/provider.dart';
@@ -21,8 +20,6 @@ void main() async {
       appId: "1:746041165202:android:0abf953d7f1342337e6d4b",
     ),
   );
-
-  await FlutterDownloader.initialize(debug: true);
 
   await EasyLocalization.ensureInitialized();
   final prefs = await SharedPreferences.getInstance();
